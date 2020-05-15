@@ -12,5 +12,7 @@ ul
   = f.label :body, 'Your answer'
   .answer-errors
   = f.text_area :body, class: 'form-control'
+  = f.fields_for :attachments do |a|
+    = a.file_field :file
 
   =f.submit 'Create', class: 'btn btn-outline-primary'
