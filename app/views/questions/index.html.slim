@@ -1,1 +1,14 @@
 p= link_to 'Ask question', new_question_path
+
+.questions
+  - @questions.each do |question|
+    .section.post-head
+      h2= link_to question.title, question_path(question)
+      .br
+      .small
+        h5
+          = question.created_at.to_date.strftime("%d %B, %Y")
+          - if user_signed_in?
+            = link_to 'Edit', edit_question_path(question)
+            = ' | '
+            = link_to 'Delete', question_path(question), method: :delete, data: {confirm: t("common.are_you_sure")}

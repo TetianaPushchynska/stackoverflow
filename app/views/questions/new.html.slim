@@ -1,8 +1,13 @@
 = form_for @question do |f|
-  = f.label :title
-  = f.text_field :title
+  p
+    = f.label :title, 'Title'
+    = f.text_field :title, class: "form-control"
+  p
+    = f.label :body
+    = f.text_area :body, class: "form-control"
+  p Attachments:
+  p
+    = f.fields_for :attachments do |a|
+      = a.file_field :file
 
-  = f.label :body
-  = f.text_area :body
-
-  = f.submit 'Create'
+  p= f.submit 'Create'

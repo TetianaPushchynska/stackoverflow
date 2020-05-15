@@ -2,7 +2,7 @@ class CreateAnswers < ActiveRecord::Migration[5.2]
   def change
     create_table :answers do |t|
       t.text :body
-      t.reference :question, index: true
+      t.references :question, index: true
 
       t.timestamps
     end

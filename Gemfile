@@ -40,6 +40,10 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'slim-rails'
 gem 'devise'
+gem 'pry'
+gem 'jquery-rails'
+gem 'carrierwave'
+gem 'bootstrap', '~> 4.4.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -51,12 +55,13 @@ group :development, :test do
 end
 
 group :test do
+  #gem 'chromedriver-helper'
+  #gem 'selenium-webdriver'
+  #gem 'webdrivers', '~> 4.0'
   gem 'capybara'
-  gem 'chromedriver-helper'
-  gem 'selenium-webdriver'
   gem 'shoulda-matchers'
-  gem 'webdrivers', '~> 4.0'
   gem 'rails-controller-testing'
+  gem 'capybara-webkit'
 end
 
 group :development do
