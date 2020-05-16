@@ -8,11 +8,13 @@ ul
 .answers
   = render 'questions/answers'
 
-= form_for [@question, @answer], remote: true do |f|
+= nested_form_for [@question, @answer], remote: true do |f|
   = f.label :body, 'Your answer'
   .answer-errors
   = f.text_area :body, class: 'form-control'
   = f.fields_for :attachments do |a|
     = a.file_field :file
+    = a.link_to_remove "Remove this attachment"
+  p= f.link_to_add "Add a new attachment", :attachments
 
-  =f.submit 'Create', class: 'btn btn-outline-primary'
+  = f.submit 'Create', class: 'btn btn-outline-primary'
