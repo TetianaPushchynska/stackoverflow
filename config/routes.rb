@@ -9,9 +9,7 @@ Rails.application.routes.draw do
   end
 
   root "questions#index"
-  resources :questions, concerns: :commentable do
-    resources :answers
+  resources :questions, concerns: :commentable, shallow: true do
+    resources :answers, concerns: :commentable
   end
-
-  resources :answers, concerns: :commentable
 end

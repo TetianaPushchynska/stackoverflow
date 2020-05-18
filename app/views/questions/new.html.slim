@@ -3,11 +3,11 @@
     = f.label :title, 'Title'
     = f.text_field :title, class: "form-control"
   p
-    = f.label :body
+    = f.label :body, 'Text'
     = f.text_area :body, class: "form-control"
   p Attachments:
   p
-    = f.fields_for :attachments do |a|
+    = f.fields_for :attachments, @question.attachments.build do |a|
       = a.file_field :file
       = a.link_to_remove "Remove this attachment"
   p= f.link_to_add "Add a attachment", :attachments

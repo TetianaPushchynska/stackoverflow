@@ -5,8 +5,6 @@
   ul
     - @question.attachments.each do |a|
       li= link_to a.file.identifier, a.file.url
-
-  p Comments:
   .comments
     = render 'comments/list', parent: @question
 
@@ -17,7 +15,7 @@
   = f.label :body, 'Your answer'
   .answer-errors
   = f.text_area :body, class: 'form-control'
-  = f.fields_for :attachments do |a|
+  = f.fields_for :attachments, @answer.attachments.build do |a|
     = a.file_field :file
     = a.link_to_remove "Remove this attachment"
   p= f.link_to_add "Add a new attachment", :attachments
