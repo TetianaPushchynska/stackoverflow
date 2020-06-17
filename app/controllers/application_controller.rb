@@ -8,5 +8,6 @@ class ApplicationController < ActionController::Base
     redirect_to root_path, alert: exception.message
   end
 
-  check_authorization
+  # check_authorization
+  skip_authorization_check
 end

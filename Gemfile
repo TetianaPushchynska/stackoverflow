@@ -48,10 +48,13 @@ gem 'nested_form'
 gem 'private_pub'
 gem 'thin'
 gem 'responders'
-gem 'omniauth'
-gem 'omniauth-facebook'
-gem 'cancancan'
-gem 'doorkeeper'
+gem 'omniauth' # аутентифікація
+gem 'omniauth-facebook' # аутентифікація
+gem 'cancancan' # для визначення доступів
+gem 'doorkeeper' # для створення api
+gem 'active_model_serializers' # для створення серіалайзерів
+gem 'oj' # для швидшого перетворення відповідей в json
+gem 'oj_mimic_json' # працює з gem 'oj'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

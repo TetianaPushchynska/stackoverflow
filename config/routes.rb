@@ -15,7 +15,10 @@ Rails.application.routes.draw do
 
   namespace "api" do
     namespace "v1" do
-      get "profiles/me", to: "/api/v1/profiles#me"
+      resource :profiles do
+        get :me, on: :collection
+      end
+      resources :questions
     end
   end
 
