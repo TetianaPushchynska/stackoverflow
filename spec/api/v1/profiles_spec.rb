@@ -1,24 +1,17 @@
 require 'rails_helper'
 
 RSpec.describe 'Profile API' do
-  describe '#GET /me' do
-    context 'unauthorized' do
-      it 'returns 401 status if there is no access_token' do
-        get "/api/v1/profiles/me", params: { format: :json }
-        expect(response.status).to eq 401
-      end
+  describe('#GET /me') do
 
-      it 'returns 401 status if access_token is invalid' do
-        get '/api/v1/profiles/me', params: { format: :json, access_token: '1234' }
-        expect(response.status).to eq 401
-      end
+    it_behaves_like 'API Authenticable' do
+      let(:api_path) { '/api/v1/profiles/me' }
     end
 
     context 'authorized' do
       let(:me) { create(:user) }
       let(:access_token) { create(:access_token, resource_owner_id: me.id) }
 
-      before { get '/api/v1/profiles/me', params: { format: :json, access_token: access_token.token } }
+      before { get '/api/v1/profiles/me', params: {format: :json, access_token: access_token.token} }
 
       it 'returns 200 status' do
         expect(response).to be_success

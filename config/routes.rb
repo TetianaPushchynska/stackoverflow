@@ -13,8 +13,8 @@ Rails.application.routes.draw do
     resources :answers, concerns: :commentable
   end
 
-  namespace "api" do
-    namespace "v1" do
+  namespace :api do
+    namespace :v1 do
       resource :profiles do
         get :me, on: :collection
       end
