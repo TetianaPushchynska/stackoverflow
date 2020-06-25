@@ -3,21 +3,27 @@
   p= @question.body
   p Attachments:
   ul
-    - @question.attachments.each do |a|
-      li= link_to a.file.identifier, a.file.url
+    - if @question.attachments.present?
+      - @question.attachments.each do |a|
+        - if a.file.file.present?
+          li= link_to a.file.identifier, a.file.url
+  h6 Comments:
   .comments
-    = render 'comments/list', parent: @question
+    p= render 'comments/list', parent: @question
+
+h3= "#{@question.answers.count} Answers"
 
 .answers
   = render 'questions/answers'
 
 = nested_form_for [@question, @answer], remote: true do |f|
-  = f.label :body, 'Your answer'
   .answer-errors
+  = f.label :body, 'Your answer'
   = f.text_area :body, class: 'form-control'
   = f.fields_for :attachments, @answer.attachments.build do |a|
     = a.file_field :file
     = a.link_to_remove "Remove this attachment"
+  = f.hidden_field :user_id, value: current_user.id
   p= f.link_to_add "Add a new attachment", :attachments
 
   = f.submit 'Create', class: 'btn btn-outline-primary'

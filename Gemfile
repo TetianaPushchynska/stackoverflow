@@ -39,15 +39,15 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'slim-rails'
-gem 'devise'
+gem 'devise' # аутентифікація
 gem 'pry'
 gem 'jquery-rails'
 gem 'carrierwave'
 gem 'bootstrap', '~> 4.4.1'
-gem 'nested_form'
-gem 'private_pub'
+gem 'nested_form' # для завантаження декількох файлів
+gem 'private_pub' # при редагуванні або додаванні об'єкту користувачем автоматичне відображення іншому користувачеві,якщо він переглядає дану сторінку
 gem 'thin'
-gem 'responders'
+gem 'responders' # для скорочення контролерів
 gem 'omniauth' # аутентифікація
 gem 'omniauth-facebook' # аутентифікація
 gem 'cancancan' # для визначення доступів
@@ -55,6 +55,10 @@ gem 'doorkeeper' # для створення api
 gem 'active_model_serializers' # для створення серіалайзерів
 gem 'oj' # для швидшого перетворення відповідей в json
 gem 'oj_mimic_json' # працює з gem 'oj'
+#gem 'delayed_job_active_record' # background jobs
+#gem 'whenever' # для запуску бекґраунд джобів за розкладом run: bundle exec wheneverize .
+gem 'sidekiq' # background jobs
+gem 'sidetiq' # для запуску бекґраунд джобів за розкладом
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

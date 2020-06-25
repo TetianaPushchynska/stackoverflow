@@ -34,7 +34,8 @@ module Stackoverflow
 
     # Don't generate system test files.
     config.generators.system_tests = nil
-
+    Sidekiq::Extensions.enable_delay!
+    Redis.exists_returns_integer = true
     config.generators do |g|
       g.test_framework :rspec,
                        fixtures: true,

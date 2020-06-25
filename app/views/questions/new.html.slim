@@ -10,6 +10,7 @@
     = f.fields_for :attachments, @question.attachments.build do |a|
       = a.file_field :file
       = a.link_to_remove "Remove this attachment"
+  p= f.hidden_field :user_id, value: current_user.id
   p= f.link_to_add "Add a attachment", :attachments
 
   p= f.submit 'Create', class: 'btn btn-outline-primary'

@@ -6,7 +6,9 @@ class AnswersController < ApplicationController
 
   def create
     @question = Question.find(params[:question_id])
+   # binding.pry
     @answer = @question.answers.create(answer_params)
+   # @answer.user_id = current_user.id
   end
 
   def update
@@ -22,6 +24,6 @@ class AnswersController < ApplicationController
   end
 
   def answer_params
-    params.require(:answer).permit(:body, attachments_attributes: [:file, :id, :_destroy])
+    params.require(:answer).permit(:body, :user_id, attachments_attributes: [:file, :id, :destroy])
   end
 end

@@ -1,17 +1,20 @@
 - @question.answers.each do |answer|
   - if answer.persisted?
     .answer id="answer-#{answer.id}"
-      p= answer.body
+      h5
+        = answer.body
+        = link_to ' Edit', '', class: 'edit-answer-link', data: { answer_id: answer.id }
       ul
         - answer.attachments.each do |a|
-          li= link_to a.file.identifier, a.file.url
-      - if user_signed_in?
-        p= link_to 'Edit', '', class: 'edit-answer-link', data: { answer_id: answer.id }
+          - if a.file.file.present?
+            li= link_to a.file.identifier, a.file.url
+      - if user_signed_in? && current_user.id == answer.user_id
         p
           = form_for answer, remote: true, html: { id: "edit-answer-#{answer.id}" } do |f|
             = f.label :body, 'Editing answer'
             = f.text_area :body, class: 'form-control'
 
             = f.submit 'Save', class: 'btn btn-outline-primary'
+        h6 Comments:
         .comments
           p= render 'comments/list', parent: answer

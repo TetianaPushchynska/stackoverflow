@@ -6,7 +6,7 @@ class User < ApplicationRecord
   has_many :authorizations
   has_many :questions
   has_many :answers
- # has_many :comments
+  has_many :comments
 
   def self.find_for_oauth(auth)
     authorization = Authorization.where(provider: auth.provider, uid: auth.uid.to_s).first
@@ -22,6 +22,13 @@ class User < ApplicationRecord
       user.create_authorization(auth)
     end
     user
+  end
+
+  def self.send_daily_digest
+    find_each.each do |user|
+      DailyMailer.delay.digest(user)
+      # DailyMailer.digest(user)
+    end
   end
 
   def create_authorization(auth)

@@ -10,9 +10,14 @@ class Question < ApplicationRecord
 
   accepts_nested_attributes_for :attachments, allow_destroy: true
 
-  after_save :calculate_reputation
+  after_save :update_reputation
+  # after_save :calculate_reputation
 
   private
+
+  def update_reputation
+    self.delay.calculate_reputation
+  end
 
   def calculate_reputation # callback
     reputation = Reputation.calculate(self)
